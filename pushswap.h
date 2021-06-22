@@ -25,6 +25,7 @@ typedef struct s_stacks
 {
 	t_stacka	*mystack;
 	t_stackb	*sorted;
+	int			size;
 }				t_stacks;
 
 void	ft_startwork(char **av);
