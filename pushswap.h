@@ -9,16 +9,24 @@
 
 typedef struct s_stacka
 {
-	int				*elem_a;
-	struct t_stacka	*next;
-	struct t_stacka	*prev;
+	int				elem_a;
+	struct s_stacka	*next;
+	struct s_stacka	*prev;
 }				t_stacka;
 
 typedef struct s_stackb
 {
 	int				elem_b;
-	struct t_stackb	*next;
-	struct t_stackb	*prev;
+	struct s_stackb	*next;
+	struct s_stackb	*prev;
 }				t_stackb;
+
+typedef struct s_stacks
+{
+	t_stacka	*mystack;
+	t_stackb	*sorted;
+}				t_stacks;
+
+void	ft_startwork(char **av);
 
 #endif

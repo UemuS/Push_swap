@@ -55,4 +55,5 @@ int	main(int ac, char **av)
 		return (ft_error());
 	if (ft_checkint(av))
 		return (ft_error());
+	ft_startwork(av);
 }
