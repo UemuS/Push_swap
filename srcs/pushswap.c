@@ -6,7 +6,7 @@ t_stacka	*ft_mallocatoi(char *str)
 
 	a = malloc(sizeof(t_stacka));
 	if (!a)
-		return(NULL);
+		return (NULL);
 	a->elem_a = (int)ft_atoi(str);
 	return (a);
 }
@@ -20,12 +20,11 @@ t_stacka	*ft_filla(char **av)
 	i = 1;
 	next = NULL;
 	prev = NULL;
-	
 	while (av[i])
 	{
 		next = ft_mallocatoi(av[i]);
-		if(!next)
-			return(NULL);
+		if (!next)
+			return (NULL);
 		next->prev = prev;
 		if (prev)
 			prev->next = next;
@@ -39,7 +38,7 @@ t_stacka	*ft_filla(char **av)
 	return (next);
 }
 
-int		ft_count(t_stacka *stack)
+int	ft_count(t_stacka *stack)
 {
 	int	i;
 

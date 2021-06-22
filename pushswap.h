@@ -16,7 +16,7 @@ typedef struct s_stacka
 
 typedef struct s_stackb
 {
-	int				elem_b;
+	long			elem_b;
 	struct s_stackb	*next;
 	struct s_stackb	*prev;
 }				t_stackb;
