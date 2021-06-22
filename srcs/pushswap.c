@@ -1,20 +1,20 @@
 #include "pushswap.h"
 
-t_stacka	*ft_mallocatoi(char *str)
+t_stack	*ft_mallocatoi(char *str)
 {
-	t_stacka	*a;
+	t_stack	*a;
 
-	a = malloc(sizeof(t_stacka));
+	a = malloc(sizeof(t_stack));
 	if (!a)
 		return (NULL);
-	a->elem_a = (int)ft_atoi(str);
+	a->elem = (int)ft_atoi(str);
 	return (a);
 }
 
-t_stacka	*ft_filla(char **av)
+t_stack	*ft_filla(char **av)
 {
-	t_stacka	*next;
-	t_stacka	*prev;
+	t_stack	*next;
+	t_stack	*prev;
 	int			i;
 
 	i = 1;
@@ -38,7 +38,7 @@ t_stacka	*ft_filla(char **av)
 	return (next);
 }
 
-int	ft_count(t_stacka *stack)
+int	ft_count(t_stack *stack)
 {
 	int	i;
 
@@ -58,6 +58,40 @@ void	ft_startwork(char **av)
 	t_stacks	*stacks;
 
 	stacks = malloc(sizeof(t_stacks));
+	stacks->sorted = malloc(sizeof(t_stack));
+	stacks->sorted = NULL;
 	stacks->mystack = ft_filla(av);
 	stacks->size = ft_count(stacks->mystack);
+	printf("first\n");
+	while(stacks->mystack)
+	{
+		printf("%d\n", stacks->mystack->elem);
+		if(stacks->mystack->next)
+			stacks->mystack = stacks->mystack->next;
+		else
+			break;
+	}
+	while(stacks->mystack->prev)
+		stacks->mystack = stacks->mystack->prev;
+	printf("after rotation\n");
+	ft_atob(stacks);
+	while(stacks->mystack)
+	{
+		printf("%d\n", stacks->mystack->elem);
+		if(stacks->mystack->next)
+			stacks->mystack = stacks->mystack->next;
+		else
+			break;
+	}
+	while(stacks->mystack->prev)
+		stacks->mystack = stacks->mystack->prev;
+	printf("b\n");
+	while(stacks->sorted)
+	{
+		printf("%d\n", stacks->sorted->elem);
+		if(stacks->sorted->next)
+			stacks->sorted = stacks->sorted->next;
+		else
+			break;
+	}
 }

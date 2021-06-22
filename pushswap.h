@@ -7,27 +7,22 @@
 # include <fcntl.h>
 # include "libft.h"
 
-typedef struct s_stacka
+typedef struct s_stack
 {
-	int				elem_a;
-	struct s_stacka	*next;
-	struct s_stacka	*prev;
-}				t_stacka;
-
-typedef struct s_stackb
-{
-	long			elem_b;
-	struct s_stackb	*next;
-	struct s_stackb	*prev;
-}				t_stackb;
+	int				elem;
+	struct s_stack	*next;
+	struct s_stack	*prev;
+}						t_stack;
 
 typedef struct s_stacks
 {
-	t_stacka	*mystack;
-	t_stackb	*sorted;
+	t_stack	*mystack;
+	t_stack	*sorted;
 	int			size;
 }				t_stacks;
 
+void	ft_atob(t_stacks *stacks);
 void	ft_startwork(char **av);
+void	ft_rotatea(t_stacks *stacks);
 
 #endif

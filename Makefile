@@ -6,7 +6,7 @@
 #    By: yihssan <yihssan@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/22 09:02:15 by yihssan           #+#    #+#              #
-#    Updated: 2021/06/22 09:48:36 by yihssan          ###   ########.fr        #
+#    Updated: 2021/06/22 13:32:24 by yihssan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ LIB = -L./libft -lft
 
 MSRC = pushmain.c
 
-SUBSRCS = pushswap.c
+SUBSRCS = pushswap.c operations.c
 
 SUBOBJS = $(SUBSRCS:%.c=%.o)
 
