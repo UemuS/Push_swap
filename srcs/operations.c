@@ -92,3 +92,22 @@ void	ft_btoa(t_stacks *stacks)
 	}
 	stacks->sorted = head;
 }
+
+void	ft_switch(t_stacks *stacks)
+{
+	t_stack	*a;
+	t_stack	*b;
+	t_stack *tmp;
+
+	a = stacks->mystack->next;
+	b = stacks->sorted->next;
+	if (stacks->mystack->next)
+		stacks->mystack->next->prev = stacks->sorted;
+	if (stacks->sorted->next)	
+		stacks->sorted->next->prev = stacks->mystack;
+	tmp = stacks->sorted;
+	stacks->sorted = stacks->mystack;
+	stacks->mystack = tmp;
+	stacks->sorted->next = b;
+	stacks->mystack->next = a;
+}

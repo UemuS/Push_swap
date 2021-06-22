@@ -73,23 +73,24 @@ void	ft_startwork(char **av)
 	}
 	while(stacks->mystack->prev)
 		stacks->mystack = stacks->mystack->prev;
-	ft_btoa(stacks);
-	while(stacks->mystack)
-	{
-		printf("%d\n", stacks->mystack->elem);
-		if(stacks->mystack->next)
-			stacks->mystack = stacks->mystack->next;
-		else
-			break;
-	}
-	while(stacks->mystack->prev)
-		stacks->mystack = stacks->mystack->prev;
+	ft_atob(stacks);
+	ft_atob(stacks);
+	ft_switch(stacks);
 	printf("b\n");
 	while(stacks->sorted)
 	{
 		printf("%d\n", stacks->sorted->elem);
 		if(stacks->sorted->next)
 			stacks->sorted = stacks->sorted->next;
+		else
+			break;
+	}
+	printf("a\n");
+	while(stacks->mystack)
+	{
+		printf("%d\n", stacks->mystack->elem);
+		if(stacks->mystack->next)
+			stacks->mystack = stacks->mystack->next;
 		else
 			break;
 	}
