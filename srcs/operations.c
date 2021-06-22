@@ -56,6 +56,8 @@ void	ft_atob(t_stacks *stacks)
 {
 	t_stack *head;
 
+	if (!stacks->mystack)
+		return ;
 	head = stacks->mystack->next;
 	stacks->mystack->next->prev = NULL;
 	stacks->mystack->next = NULL;
@@ -68,4 +70,25 @@ void	ft_atob(t_stacks *stacks)
 		stacks->sorted = stacks->sorted->prev;
 	}
 	stacks->mystack = head;
+}
+
+void	ft_btoa(t_stacks *stacks)
+{
+	t_stack *head;
+
+	if (!stacks->sorted)
+		return ;
+	head = stacks->sorted->next;
+	if (stacks->sorted->next)
+		stacks->sorted->next->prev = NULL;
+	stacks->sorted->next = NULL;
+	if (!stacks->mystack)
+		stacks->mystack = stacks->sorted;
+	else
+	{
+		stacks->mystack->prev = stacks->sorted;
+		stacks->mystack->prev->next = stacks->mystack;
+		stacks->mystack = stacks->mystack->prev;
+	}
+	stacks->sorted = head;
 }

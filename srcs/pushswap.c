@@ -73,8 +73,7 @@ void	ft_startwork(char **av)
 	}
 	while(stacks->mystack->prev)
 		stacks->mystack = stacks->mystack->prev;
-	printf("after rotation\n");
-	ft_atob(stacks);
+	ft_btoa(stacks);
 	while(stacks->mystack)
 	{
 		printf("%d\n", stacks->mystack->elem);
