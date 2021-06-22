@@ -6,6 +6,8 @@ void	ft_rotatea(t_stacks *stacks)
 	int			i;
 
 	i = 0;
+	if (!stacks->mystack || !stacks->mystack->next)
+		return ;
 	head = stacks->mystack;
 	while(stacks->mystack)
 	{
@@ -31,6 +33,8 @@ void	ft_rotateb(t_stacks *stacks)
 	t_stack	*head;
 	int			i;
 
+	if (!stacks->sorted || !stacks->sorted->next)
+		return ;
 	i = 0;
 	head = stacks->sorted;
 	while(stacks->sorted)
@@ -93,21 +97,90 @@ void	ft_btoa(t_stacks *stacks)
 	stacks->sorted = head;
 }
 
-void	ft_switch(t_stacks *stacks)
+void	ft_revrotatea(t_stacks *stacks)
 {
-	t_stack	*a;
-	t_stack	*b;
-	t_stack *tmp;
+	t_stack	*head;
 
-	a = stacks->mystack->next;
-	b = stacks->sorted->next;
-	if (stacks->mystack->next)
-		stacks->mystack->next->prev = stacks->sorted;
-	if (stacks->sorted->next)	
-		stacks->sorted->next->prev = stacks->mystack;
-	tmp = stacks->sorted;
-	stacks->sorted = stacks->mystack;
-	stacks->mystack = tmp;
-	stacks->sorted->next = b;
-	stacks->mystack->next = a;
+	if (!stacks->mystack || !stacks->mystack->next)
+		return ;
+	head = stacks->mystack;
+	while(stacks->mystack)
+	{
+		
+		if (stacks->mystack->next)
+			stacks->mystack = stacks->mystack->next;
+		else
+		{
+			if (stacks->mystack->prev)
+				stacks->mystack->prev->next = NULL;
+			stacks->mystack->prev = NULL;
+			stacks->mystack->next = head;
+			head->prev = stacks->mystack;
+			break;
+		}
+	}
+	while(stacks->mystack->prev)
+		stacks->mystack = stacks->mystack->prev;
+}
+
+void	ft_revrotateb(t_stacks *stacks)
+{
+	t_stack	*head;
+
+	if (!stacks->sorted || !stacks->sorted->next)
+		return ;
+	head = stacks->sorted;
+	while(stacks->sorted)
+	{
+		
+		if (stacks->sorted->next)
+			stacks->sorted = stacks->sorted->next;
+		else
+		{
+			if (stacks->sorted->prev)
+				stacks->sorted->prev->next = NULL;
+			stacks->sorted->prev = NULL;
+			stacks->sorted->next = head;
+			head->prev = stacks->sorted;
+			break;
+		}
+	}
+	while(stacks->sorted->prev)
+		stacks->sorted = stacks->sorted->prev;
+}
+
+void	ft_swapa(t_stacks *stacks)
+{
+	t_stack *oldhead;
+	t_stack *newhead;
+
+	if (!stacks->mystack || !stacks->mystack->next)
+		return ;
+	oldhead = stacks->mystack;
+	newhead = stacks->mystack->next;
+	if (stacks->mystack->next->next)
+		stacks->mystack->next->next->prev = oldhead;
+	stacks->mystack->next = stacks->mystack->next->next;
+	stacks->mystack->prev = newhead;
+	newhead->prev = NULL;
+	newhead->next = oldhead;
+	stacks->mystack = stacks->mystack->prev;
+}
+
+void	ft_swapb(t_stacks *stacks)
+{
+	t_stack *oldhead;
+	t_stack *newhead;
+
+	if (!stacks->sorted || !stacks->sorted->next)
+		return ;
+	oldhead = stacks->sorted;
+	newhead = stacks->sorted->next;
+	if (stacks->sorted->next->next)
+		stacks->sorted->next->next->prev = oldhead;
+	stacks->sorted->next = stacks->sorted->next->next;
+	stacks->sorted->prev = newhead;
+	newhead->prev = NULL;
+	newhead->next = oldhead;
+	stacks->sorted = stacks->sorted->prev;
 }

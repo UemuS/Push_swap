@@ -21,10 +21,13 @@ typedef struct s_stacks
 	int			size;
 }				t_stacks;
 
-void	ft_switch(t_stacks *stacks);
+void	ft_revrotateb(t_stacks *stacks);
+void	ft_revrotatea(t_stacks *stacks);
 void	ft_btoa(t_stacks *stacks);
 void	ft_atob(t_stacks *stacks);
 void	ft_startwork(char **av);
 void	ft_rotatea(t_stacks *stacks);
+void	ft_swapa(t_stacks *stacks);
+void	ft_swapb(t_stacks *stacks);
 
 #endif
