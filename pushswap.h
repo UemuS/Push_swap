@@ -18,6 +18,8 @@ typedef struct s_stacks
 {
 	t_stack	*mystack;
 	t_stack	*sorted;
+	int		*srt;
+	int		*stacka;
 	int			size;
 }				t_stacks;
 

@@ -1,5 +1,66 @@
 #include "pushswap.h"
 
+int ft_pow(int x, unsigned int y)
+{
+	int temp;
+
+	if (y == 0)
+		return (1);
+	temp = ft_pow(x, y / 2);
+	if (y % 2 == 0)
+		return (temp * temp);
+	else
+		return (x * temp * temp);
+}
+
+void merge(int arr[], int l, int m, int r)
+{
+    int i, j, k;
+    int n1 = m - l + 1;
+    int n2 = r - m;
+
+    int L[n1], R[n2];
+
+    for (i = 0; i < n1; i++)
+        L[i] = arr[l + i];
+    for (j = 0; j < n2; j++)
+        R[j] = arr[m + 1 + j];
+    i = 0; 
+    j = 0; 
+    k = l; 
+    while (i < n1 && j < n2) {
+        if (L[i] <= R[j]) {
+            arr[k] = L[i];
+            i++;
+        }
+        else {
+            arr[k] = R[j];
+            j++;
+        }
+        k++;
+    }
+    while (i < n1) {
+        arr[k] = L[i];
+        i++;
+        k++;
+    }
+    while (j < n2) {
+        arr[k] = R[j];
+        j++;
+        k++;
+    }
+}
+void ft_mergeSort(int arr[], int l, int r)
+{
+    if (l < r) {
+        int m = l + (r - l) / 2;
+        ft_mergeSort(arr, l, m);
+        ft_mergeSort(arr, m + 1, r);
+
+        merge(arr, l, m, r);
+    }
+}
+
 t_stack	*ft_mallocatoi(char *str)
 {
 	t_stack	*a;
@@ -179,6 +240,102 @@ void	fivesort(t_stacks *stacks)
 		ft_execwrite("pa", stacks);
 }
 
+int	ft_index(int *srt, int elem, int max)
+{
+	int	i;
+
+	i = 0;
+	while(i < max)
+	{
+		if (srt[i] == elem)
+			return (i);
+		i++;
+	}
+	return (i);
+}
+
+int	ft_nextbase(int max)
+{
+	int	i;
+
+	i = 0;
+	while(ft_pow(2, i) < max)
+		i++;
+	return (i);
+}
+
+int	ft_getlast(t_stack *stack)
+{
+	while (stack)
+	{
+		if (stack->next)
+			stack = stack->next;
+		else
+			break;
+	}
+	return (stack->elem);
+}
+
+void	ft_radix(t_stacks *stacks)
+{
+	int	i;
+	int	bits;
+	int	last;
+
+	i = 0;
+	bits = ft_nextbase(stacks->size - 1);
+	while (i < bits && !issorted(stacks->mystack))
+	{
+		last = ft_getlast(stacks->mystack);
+		while(stacks->mystack->elem != last)
+		{
+			if (stacks->mystack->elem & ft_pow(2, i))
+				ft_execwrite("ra", stacks);
+			else
+				ft_execwrite("pb", stacks);
+		}
+		if (stacks->mystack->elem & ft_pow(2, i))
+			ft_execwrite("ra", stacks);
+		else
+			ft_execwrite("pb", stacks);
+		while (stacks->sorted)
+		{
+			ft_execwrite("pa", stacks);
+		}
+		i++;
+	}
+}
+
+void	bigsort(t_stacks *stacks)
+{
+	int	i;
+
+	i = 0;
+	stacks->srt = malloc(sizeof(int) * stacks->size);
+	while (stacks->mystack)
+	{
+		stacks->srt[i++] = stacks->mystack->elem;
+		if (stacks->mystack->next)
+			stacks->mystack = stacks->mystack->next;
+		else
+			break;
+	}
+	while (stacks->mystack->prev)
+		stacks->mystack = stacks->mystack->prev;
+	ft_mergeSort(stacks->srt, 0, stacks->size - 1);
+	while (stacks->mystack)
+	{
+		stacks->mystack->elem = ft_index(stacks->srt, stacks->mystack->elem, stacks->size);
+		if (stacks->mystack->next)
+			stacks->mystack = stacks->mystack->next;
+		else
+			break;
+	}
+	while (stacks->mystack->prev)
+		stacks->mystack = stacks->mystack->prev;
+	ft_radix(stacks);
+}
+
 void	gosort(t_stacks *stacks)
 {
 	if (stacks->size <= 5)
@@ -191,7 +348,7 @@ void	gosort(t_stacks *stacks)
 			fivesort(stacks);
 	}
 	else
-		;
+		bigsort(stacks);
 }
 
 void	ft_startwork(char **av)
