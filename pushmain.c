@@ -34,6 +34,8 @@ int	ft_checkint(char **av)
 	while (av[i])
 	{
 		j = 0;
+		if (av[i][j] == '-' && !av[i][j + 1])
+			return (1);
 		while (av[i][j])
 		{
 			if (!ft_isdigit(av[i][j]) && (j != 0 || av[i][j] != '-'))
