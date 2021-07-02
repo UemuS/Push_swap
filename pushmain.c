@@ -1,9 +1,9 @@
 #include "pushswap.h"
 
-int	ft_error(void)
+void	ft_error(void)
 {
 	write(2, "Error\n", 6);
-	return (255);
+	exit (255);
 }
 
 int	ft_size(char *nmb)
@@ -54,12 +54,9 @@ int	ft_checkint(char **av)
 int	main(int ac, char **av)
 {
 	if (ft_checkint(av))
-		return (ft_error());
+		ft_error();
 	if (ac < 2)
-	{
-		write(1, "\n", 1);
 		return (0);
-	}
 	if (ac == 2)
 		return (0);
 	ft_startwork(av);

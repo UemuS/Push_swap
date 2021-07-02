@@ -46,8 +46,12 @@ void	ft_readline(t_stacks *stacks)
 
 	size = (int)stacks->size;
 	while (get_next_line(0, &line) > 0)
+	{
 		ft_execorerror(line, stacks, 0);
+		free(line);
+	}
 	ft_execorerror(line, stacks, 1);
+	free(line);
 	if (issorted(stacks->mya) && size == ft_count(stacks->mya))
 		write(1, "OK\n", 3);
 	else
