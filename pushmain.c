@@ -3,7 +3,7 @@
 int	ft_error(void)
 {
 	write(2, "Error\n", 6);
-	return (1);
+	return (255);
 }
 
 int	ft_size(char *nmb)
