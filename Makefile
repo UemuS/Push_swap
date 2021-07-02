@@ -28,7 +28,7 @@ BSRC = checker_bonus.c
 
 SUBSRCS = pushswap.c operations.c operations2.c pushswap2.c sorts.c radixsort.c
 
-BONUSSUB = operations.c operations2.c get_next_line.c get_next_line_utils.c
+BONUSSUB = operations.c operations2.c get_next_line.c get_next_line_utils.c checker_tools.c checker_tools2.c
 
 SUBOBJS = $(SUBSRCS:%.c=%.o)
 

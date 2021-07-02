@@ -30,9 +30,12 @@ int		ft_rotatea(t_stacks *stacks);
 int		ft_rotateb(t_stacks *stacks);
 int		ft_swapa(t_stacks *stacks);
 int		ft_swapb(t_stacks *stacks);
-
+void	freethestack(t_stacks *stacks);
 void	ft_execwrite(char *instruction, t_stacks *stacks);
-
+t_stack	*ft_filla(char **av);
 void	ft_startwork(char **av);
-
+int		ft_checkint(char **av);
+int		ft_count(t_stack *stack);
+void	ft_error(void);
+int		ft_size(char *nmb);
 #endif
