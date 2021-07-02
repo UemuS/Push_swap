@@ -18,7 +18,7 @@ int	ft_index(int *srt, int el, int max)
 	int	i;
 
 	i = 0;
-	while(i < max)
+	while (i < max)
 	{
 		if (srt[i] == el)
 			return (i);
@@ -32,7 +32,7 @@ int	ft_nextbase(int max)
 	int	i;
 
 	i = 0;
-	while(ft_pow(2, i) < max)
+	while (ft_pow(2, i) < max)
 		i++;
 	return (i);
 }
@@ -44,7 +44,7 @@ int	ft_getlast(t_stack *stack)
 		if (stack->next)
 			stack = stack->next;
 		else
-			break;
+			break ;
 	}
 	return (stack->el);
 }
@@ -55,12 +55,12 @@ void	ft_radix(t_stacks *stacks)
 	int	bits;
 	int	last;
 
-	i = 0;
+	i = -1;
 	bits = ft_nextbase(stacks->size);
-	while (i < bits && !issorted(stacks->mya))
+	while (++i < bits && !issorted(stacks->mya))
 	{
 		last = ft_getlast(stacks->mya);
-		while(stacks->mya->el != last)
+		while (stacks->mya->el != last)
 		{
 			if (stacks->mya->el & ft_pow(2, i))
 				ft_execwrite("ra", stacks);
@@ -72,9 +72,6 @@ void	ft_radix(t_stacks *stacks)
 		else
 			ft_execwrite("pb", stacks);
 		while (stacks->sorted)
-		{
 			ft_execwrite("pa", stacks);
-		}
-		i++;
 	}
 }

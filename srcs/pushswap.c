@@ -1,36 +1,5 @@
 #include "pushswap.h"
 
-void	swap(int *xp, int *yp)
-{
-	int	temp;
-
-	temp = *xp;
-	*xp = *yp;
-	*yp = temp;
-}
-
-void	selectionsort(int arr[], int n)
-{
-	int	i;
-	int	j;
-	int	min_idx;
-
-	i = 0;
-	while (i < n - 1)
-	{
-		min_idx = i;
-		j = i + 1;
-		while (j < n)
-		{
-			if (arr[j] < arr[min_idx])
-				min_idx = j;
-			j++;
-		}
-		swap(&arr[min_idx], &arr[i]);
-		i++;
-	}
-}
-
 t_stack	*ft_mallocatoi(char *str)
 {
 	t_stack	*a;
@@ -88,7 +57,7 @@ void	gosort(t_stacks *stacks)
 {
 	if (stacks->size <= 5)
 	{
-		if(stacks->size == 2)
+		if (stacks->size == 2)
 			write(1, "ra\n", 3);
 		else if (stacks->size == 3)
 			threesort(stacks);
@@ -108,7 +77,7 @@ void	ft_startwork(char **av)
 	stacks->mya = ft_filla(av);
 	stacks->size = ft_count(stacks->mya);
 	stacks->srt = malloc(sizeof(int) * stacks->size);
-	while(stacks->mya->prev)
+	while (stacks->mya->prev)
 		stacks->mya = stacks->mya->prev;
 	if (!issorted(stacks->mya))
 		gosort(stacks);

@@ -30,7 +30,7 @@ void	ft_execwrite(char *instruction, t_stacks *stacks)
 
 int	issorted(t_stack *stack)
 {
-	while(stack)
+	while (stack)
 	{
 		if (stack->prev && stack->el < stack->prev->el)
 			return (0);
@@ -57,4 +57,35 @@ void	freethestack(t_stacks *stacks)
 	}
 	free(stacks->srt);
 	free(stacks);
+}
+
+void	swap(int *xp, int *yp)
+{
+	int	temp;
+
+	temp = *xp;
+	*xp = *yp;
+	*yp = temp;
+}
+
+void	selectionsort(int arr[], int n)
+{
+	int	i;
+	int	j;
+	int	min_idx;
+
+	i = 0;
+	while (i < n - 1)
+	{
+		min_idx = i;
+		j = i + 1;
+		while (j < n)
+		{
+			if (arr[j] < arr[min_idx])
+				min_idx = j;
+			j++;
+		}
+		swap(&arr[min_idx], &arr[i]);
+		i++;
+	}
 }
