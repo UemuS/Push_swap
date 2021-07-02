@@ -22,7 +22,7 @@ LIB = -L./libft -lft
 
 MSRC = pushmain.c
 
-SUBSRCS = pushswap.c operations.c
+SUBSRCS = pushswap.c operations.c operations2.c pushswap2.c sorts.c radixsort.c
 
 SUBOBJS = $(SUBSRCS:%.c=%.o)
 

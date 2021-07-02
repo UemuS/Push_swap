@@ -53,11 +53,15 @@ int	ft_checkint(char **av)
 
 int	main(int ac, char **av)
 {
-	if (ac < 2)
-		return (ft_error());
 	if (ft_checkint(av))
 		return (ft_error());
+	if (ac < 2)
+	{
+		write(1, "\n", 1);
+		return (0);
+	}
 	if (ac == 2)
 		return (0);
 	ft_startwork(av);
+	return (0);
 }
