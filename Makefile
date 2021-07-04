@@ -42,9 +42,6 @@ $(NAME): $(addprefix ./srcs/,$(SUBOBJS)) | ./libft/libft.a
 $(addprefix ./srcs/,$(SUBOBJS)):
 	cd srcs && $(CC) $(FLAGS) $(IDIR) -c $(SUBSRCS)
 
-./libft/libft.a: ./libft/libft.h
-	cd libft && $(MAKE) bonus && $(MAKE)
-
 bonus: $(addprefix ./srcs_bonus/,$(SUBBOBJS)) | ./libft/libft.a
 	$(CC) $(FLAGS) $(IDIR) $(BSRC) -o $(BNAME) $(addprefix ./srcs_bonus/,$(SUBBOBJS)) $(LIB)
 

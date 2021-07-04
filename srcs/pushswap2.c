@@ -55,6 +55,7 @@ void	freethestack(t_stacks *stacks)
 		stacks->sorted = stacks->sorted->next;
 		free(head);
 	}
+	free(stacks->srt);
 	free(stacks);
 }
 
